@@ -1,3 +1,4 @@
+using API.Controllers;
 using Backend_Boilerplate.Models;
 using Backend_Boilerplate.Services;
 using Microsoft.AspNetCore.Http;
@@ -5,9 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend_Boilerplate.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TodoController : ControllerBase
+    public class TodoController : BaseApiController
     {
 
 
