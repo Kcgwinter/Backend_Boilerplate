@@ -1,4 +1,5 @@
 using Backend_Boilerplate.Models;
+using Backend_Boilerplate.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +10,19 @@ namespace Backend_Boilerplate.Controllers
     public class TodoController : ControllerBase
     {
 
-        static List<Todo> todos =
-            [
-                new Todo { Id = 1, Name = "Todo 1", Description = "Description 1" },
-                new Todo { Id = 2, Name = "Todo 2", Description = "Description 2" },
-            ];
 
         [HttpGet]
-        public async Task<ActionResult<List<Todo>>> GetTodos()
+        public async Task<ActionResult<List<Todo>>> GetTodos(ITodoService service)
         {
-            return await Task.FromResult(Ok(todos));
+            return Ok(await service.GetTodosAsync());
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Todo>> GetTodoById(ITodoService service, int id)
+        {
+            var todo = await service.GetTodoByIdAsync(id);
+            return todo is null ? NotFound("Todo not found") : Ok(todo);
+        }
+
     }
 }
