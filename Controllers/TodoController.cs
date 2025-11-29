@@ -8,17 +8,17 @@ namespace Backend_Boilerplate.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult> GetTodos()
-        {
-            var todos = new[]
+
+        static List<Todo> todos = new List<Todo>
             {
                 new Todo { Id = 1, Name = "Todo 1", Description = "Description 1" },
                 new Todo { Id = 2, Name = "Todo 2", Description = "Description 2" },
-
             };
 
-            return Ok(todos);
+        [HttpGet]
+        public async Task<ActionResult<List<Todo>>> GetTodos()
+        {
+            return await Task.FromResult(Ok(todos));
         }
     }
 }
