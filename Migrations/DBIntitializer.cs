@@ -39,5 +39,25 @@ public class DBIntitializer
             context.Products.AddRange(products);
             context.SaveChanges();
         }
+
+        if (!context.Tenants.Any())
+        {
+            var Tenants = new List<Tenant>
+            {
+                new ()
+                {
+                    Id = "ExampleT",
+                    Name = "ExampleT",
+                },
+                new ()
+                {
+                    Id = "Winter",
+                    Name = "Winter",
+                },
+            };
+
+            context.Tenants.AddRange(Tenants);
+            context.SaveChanges();
+        }
     }
 }

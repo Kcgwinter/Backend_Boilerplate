@@ -8,6 +8,6 @@ public class Tenant
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public int Id { get; set; } //its string because in multitenant subdomain is normally string
+    public string Id { get; set; } //its string because in multitenant subdomain is normally string
     public string Name { get; set; }
 }
