@@ -1,34 +1,28 @@
 using System;
+using Backend_Boilerplate.data;
 using Backend_Boilerplate.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Boilerplate.Services;
 
-public class TodoService : ITodoService
+public class TodoService(AppDbContext context) : ITodoService
 {
-
-    static List<Todo> todos =
-        [
-            new Todo { Id = 1, Name = "Todo 1", Description = "Description 1" },
-                new Todo { Id = 2, Name = "Todo 2", Description = "Description 2" },
-            ];
 
     public async Task<List<Todo>> GetTodosAsync()
     {
-        return await Task.FromResult(todos);
+        return await context.Todos.ToListAsync<Todo>();
     }
 
     public async Task<Todo?> GetTodoByIdAsync(int id)
     {
-        var todo = todos.FirstOrDefault(t => t.Id == id);
-        return await Task.FromResult(todo);
+        var todo = await context.Todos.FindAsync(id);
+        return todo;
     }
 
     public Task<Todo> CreateTodoAsync(Todo todo)
     {
         throw new NotImplementedException();
     }
-
-
 
     public Task<bool> UpdateTodoAsync(Todo todo)
     {
