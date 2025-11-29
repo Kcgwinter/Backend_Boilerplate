@@ -1,10 +1,9 @@
 using System;
 
-namespace Backend_Boilerplate.Models;
+namespace Backend_Boilerplate.DTOs;
 
-public class Todo : BaseModel
+public class TodoResponseDto
 {
-    public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 }

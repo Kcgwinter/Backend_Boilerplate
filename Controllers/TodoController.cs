@@ -1,4 +1,5 @@
 using API.Controllers;
+using Backend_Boilerplate.DTOs;
 using Backend_Boilerplate.Models;
 using Backend_Boilerplate.Services;
 using Microsoft.AspNetCore.Http;
@@ -9,9 +10,8 @@ namespace Backend_Boilerplate.Controllers
     public class TodoController : BaseApiController
     {
 
-
         [HttpGet]
-        public async Task<ActionResult<List<Todo>>> GetTodos(ITodoService service)
+        public async Task<ActionResult<List<TodoResponseDto>>> GetTodos(ITodoService service)
         {
             return Ok(await service.GetTodosAsync());
         }
