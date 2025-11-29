@@ -1,3 +1,4 @@
+using Backend_Boilerplate.Migrations;
 using Backend_Boilerplate.Models;
 using Backend_Boilerplate.Services;
 using Microsoft.EntityFrameworkCore;
@@ -33,5 +34,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+await DBIntitializer.InitDB(app);
 
 app.Run();
