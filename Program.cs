@@ -1,3 +1,5 @@
+using Scalar.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,8 @@ if (app.Environment.IsDevelopment())
     {
         options.DocumentPath = "/openapi/v1.json";
     });
+
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
