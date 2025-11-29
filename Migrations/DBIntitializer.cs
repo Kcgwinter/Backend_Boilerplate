@@ -21,24 +21,6 @@ public class DBIntitializer
     {
         context.Database.Migrate();
 
-        if (!context.Products.Any())
-        {
-            var products = new List<Product>
-            {
-                new ()
-                {
-                    Name = "Product 1",
-                    Description = "Description of Product 1"
-                },
-                new ()
-                {
-                    Name = "Product 2",
-                    Description = "Description of Product 2"
-                }
-            };
-            context.Products.AddRange(products);
-            context.SaveChanges();
-        }
 
         if (!context.Tenants.Any())
         {
@@ -59,5 +41,27 @@ public class DBIntitializer
             context.Tenants.AddRange(Tenants);
             context.SaveChanges();
         }
+
+        if (!context.Products.Any())
+        {
+            var products = new List<Product>
+            {
+                // new ()
+                // {
+                //     Name = "Product 1",
+                //     Description = "Description of Product 1",
+                //     TenantId = "ExampleT"
+                // },
+                // new ()
+                // {
+                //     Name = "Product 2",
+                //     Description = "Description of Product 2",
+                //     TenantId = "ExampleT"
+                // }
+            };
+            context.Products.AddRange(products);
+            context.SaveChanges();
+        }
+
     }
 }

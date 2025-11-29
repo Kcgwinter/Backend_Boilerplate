@@ -6,24 +6,27 @@ namespace Backend_Boilerplate.Services;
 
 public class CurrentTenantService : ICurrentTenantService
 {
-    private readonly AppDbContext _context;
-    public CurrentTenantService(AppDbContext context)
-    {
-        _context = context;
-    }
-
+    private readonly TenantDBContext _context;
     public string? TenantId { get; set; }
 
+    public CurrentTenantService(TenantDBContext context)
+    {
+        _context = context;
+
+    }
     public async Task<bool> SetTenant(string tenant)
     {
-        var tenantInfo = await _context.Tenants.Where(x => x.Id == tenant).FirstOrDefaultAsync();
 
-        if (tenantInfo == null)
+        var tenantInfo = await _context.Tenants.Where(x => x.Id == tenant).FirstOrDefaultAsync(); // check if tenant exists
+        if (tenantInfo != null)
+        {
+            TenantId = tenant;
+            return true;
+        }
+        else
         {
             throw new Exception("Tenant invalid");
         }
 
-        TenantId = tenantInfo.Id;
-        return true;
     }
 }
