@@ -1,4 +1,5 @@
 using System;
+using Backend_Boilerplate.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Boilerplate.Models;
@@ -6,9 +7,13 @@ namespace Backend_Boilerplate.Models;
 public class AppDbContext : DbContext
 {
 
-    public AppDbContext(DbContextOptions options) : base(options)
-    {
+    private readonly ICurrentTenantService _currentTenantService;
+    public string CurrentTenantId { get; set; }
 
+    public AppDbContext(DbContextOptions options, ICurrentTenantService currentTenantService) : base(options)
+    {
+        _currentTenantService = currentTenantService;
+        CurrentTenantId = _currentTenantService.TenantId;
     }
 
     public DbSet<Product> Products { get; set; }
@@ -18,5 +23,21 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+    }
+
+    public override int SaveChanges()
+    {
+        foreach (var entry in ChangeTracker.Entries<IMustHaveTenant>().ToList())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                case EntityState.Modified:
+                    entry.Entity.TenantId = CurrentTenantId;
+                    break;
+            }
+        }
+        var result = base.SaveChanges();
+        return result;
     }
 }

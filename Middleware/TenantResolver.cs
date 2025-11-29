@@ -1,5 +1,6 @@
 using System;
 using Backend_Boilerplate.Models;
+using Backend_Boilerplate.Services;
 
 namespace Backend_Boilerplate.Middleware;
 
@@ -13,13 +14,12 @@ public class TenantResolver
         _next = next;
     }
 
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, ICurrentTenantService currentTenantService)
     {
         context.Request.Headers.TryGetValue("Tenant", out var tenantFromHeader);
         if (String.IsNullOrEmpty(tenantFromHeader))
         {
-            context.Request.Headers.TryGetValue("Host", out var hostFromHeader);
-            tenantFromHeader = hostFromHeader.ToString().Split('.')[0];
+            await currentTenantService.SetTenant(tenantFromHeader);
         }
 
         await _next(context);

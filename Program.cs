@@ -1,3 +1,4 @@
+using Backend_Boilerplate.Middleware;
 using Backend_Boilerplate.Migrations;
 using Backend_Boilerplate.Models;
 using Backend_Boilerplate.Services;
@@ -14,7 +15,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.ConfigureWarnings(w => 
+    options.ConfigureWarnings(w =>
         w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
 });
 
@@ -36,8 +37,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-
+app.UseMiddleware<TenantResolver>();
 await DBIntitializer.InitDB(app);
 
 app.Run();
