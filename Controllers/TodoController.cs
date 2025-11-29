@@ -9,11 +9,11 @@ namespace Backend_Boilerplate.Controllers
     public class TodoController : ControllerBase
     {
 
-        static List<Todo> todos = new List<Todo>
-            {
+        static List<Todo> todos =
+            [
                 new Todo { Id = 1, Name = "Todo 1", Description = "Description 1" },
                 new Todo { Id = 2, Name = "Todo 2", Description = "Description 2" },
-            };
+            ];
 
         [HttpGet]
         public async Task<ActionResult<List<Todo>>> GetTodos()
