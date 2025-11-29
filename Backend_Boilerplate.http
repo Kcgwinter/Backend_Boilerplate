@@ -1,6 +1,0 @@
-@Backend_Boilerplate_HostAddress = http://localhost:5051
-
-GET {{Backend_Boilerplate_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
