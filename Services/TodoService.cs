@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Backend_Boilerplate.data;
 using Backend_Boilerplate.DTOs;
 using Backend_Boilerplate.Models;
@@ -24,18 +25,35 @@ public class TodoService(AppDbContext context) : ITodoService
         return todo;
     }
 
-    public Task<Todo> CreateTodoAsync(TodoResponseDto todo)
+    public async Task<Todo> CreateTodoAsync(TodoRequestDto todo)
     {
-        throw new NotImplementedException();
+        Todo newTodo = new Todo()
+        {
+            Name = todo.Name,
+            Description = todo.Description
+         };
+
+        context.Todos.Add(newTodo);
+        context.SaveChanges();
+
+        return newTodo; 
     }
 
-    public Task<bool> UpdateTodoAsync(TodoResponseDto todo)
+    public async Task<bool> UpdateTodoAsync(TodoRequestDto todo, int id)
     {
-        throw new NotImplementedException();
+        Todo updateTodo = context.Todos.Find(id);
+        if(updateTodo is null) return false;
+
+        updateTodo.Name = todo.Name;
+        updateTodo.Description = todo.Description;
+        await context.SaveChangesAsync();
+        return true;
+
     }
 
-    public Task<bool> DeleteTodoAsync(int id)
+    public async Task<bool> DeleteTodoAsync(int id)
     {
-        throw new NotImplementedException();
+        context.Remove(id);
+        return true;
     }
 }
