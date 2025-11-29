@@ -1,0 +1,79 @@
+# From .NET Core 3.0 you can use the command: `dotnet new gitignore` to generate a customizable .gitignore file
+
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+Plaudern
+
+Neues Gespräch
+
+🤓 Erklären Sie eine komplexe Sache
+
+Erklären Sie Künstliche Intelligenz so, dass ich es meinem sechsjährigen Kind erklären kann.
+
+
+🧠 Erhalten Sie Vorschläge und erstellen Sie neue Ideen
+
+Bitte geben Sie mir die besten 10 Reiseideen rund um die Welt
+
+
+💭 Übersetzen, zusammenfassen, Grammatik korrigieren und mehr...
+
+Ich liebe dich", auf Französisch
+
+
+GPT-4o Mini
+Hallo, wie kann ich Ihnen heute helfen?
+gib mir deine meinung zu diesem nightstand
+GPT-4o Mini
+Gerne! Allerdings bräuchte ich mehr Informationen über den Nachttisch, den du im Sinn hast. Welche Merkmale oder Designs hat er? Gibt es bestimmte Materialien oder Farben? Wenn du mir mehr Details gibst, kann ich dir eine fundierte Meinung dazu geben!
+GPT-4o Mini
+coin image
+7
+Aktualisierung
+
+
+
+
+Frag mich irgendetwas...
+
+
+
+Angetrieben von AITOPIA 
+Plaudern
+Fragen
+Suche
+Schreiben
+Bild
+ChatDatei
+Vision
+Ganze Seite
