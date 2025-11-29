@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Backend_Boilerplate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50c5f1ce17d56263f72760a370c92381f01bd58d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Backend_Boilerplate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Backend_Boilerplate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
