@@ -18,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
 });
 
+builder.Services.AddScoped<ICurrentTenantService, CurrentTenantService>();
+
 
 builder.Services.AddTransient<IProductService, ProductService>();
 
