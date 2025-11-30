@@ -16,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
+builder.Services.AddHealthChecks();
 builder.Services.AddScoped<ITodoService, TodoService>();
 
 var app = builder.Build();
@@ -32,6 +32,11 @@ if (app.Environment.IsDevelopment())
     });
 
     app.MapScalarApiReference();
+
+    app.MapHealthChecks("/healthz");
+
+    app.UseExceptionHandler("/error");
+
 }
 
 app.UseHttpsRedirection();
@@ -39,5 +44,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
+{
+    logger.LogInformation("Testing logging in Program.cs");
+    await response.WriteAsync("Testing");
+});
 
 app.Run();

@@ -30,9 +30,9 @@ namespace Backend_Boilerplate.Controllers
             return Ok(res);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateTodo(ITodoService service, TodoRequestDto todo)
+        public async Task<ActionResult> UpdateTodo(string id, ITodoService service, TodoRequestDto todo)
         {
-            var res = await service.UpdateTodoAsync(todo);
+            var res = await service.UpdateTodoAsync(todo, int.Parse(id));
             return res ? Ok() : NotFound("Todo not found");
         }
         [HttpDelete("{id}")]
